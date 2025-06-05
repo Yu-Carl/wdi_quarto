@@ -1,0 +1,100 @@
+[
+  {
+    "objectID": "slides.html#intro",
+    "href": "slides.html#intro",
+    "title": "World Development Indicators Analysis",
+    "section": "Intro",
+    "text": "Intro\nThe World Development Indicators dataset from the World Bank features information such as inflation rate, GDP per capita, adult literacy rate, life expectancy, and more for each country in 2022. We will be examining indicators such as life expectancy, measles immunization rate, and GDP per capita, with respect to the regions of Oceania and South America."
+  },
+  {
+    "objectID": "slides.html#setup",
+    "href": "slides.html#setup",
+    "title": "World Development Indicators Analysis",
+    "section": "Setup",
+    "text": "Setup\n\n\nData processing code\npacman::p_load(tidyverse)\nwdi &lt;- read.csv('./data/wdi.csv')\n\nwdi_region &lt;- wdi %&gt;%\n  mutate(Region = case_when(country == \"Argentina\" ~ \"South America\",\n                           country == \"Bolivia\" ~ \"South America\",\n                           country == \"Brazil\" ~ \"South America\",\n                           country == \"Chile\" ~ \"South America\",\n                           country == \"Colombia\" ~ \"South America\",\n                           country == \"Ecuador\" ~ \"South America\",\n                           country == \"Guyana\" ~ \"South America\",\n                           country == \"Paraguay\" ~ \"South America\",\n                           country == \"Peru\" ~ \"South America\",\n                           country == \"Suriname\" ~ \"South America\",\n                           country == \"Uruguay\" ~ \"South America\",\n                           country == \"Venezuela, RB\" ~ \"South America\",\n                           country == \"Australia\" ~ \"Oceania\",\n                           country == \"Cook Islands\" ~ \"Oceania\",\n                           country == \"Micronesia, Fed. Sts.\" ~ \"Oceania\",\n                           country == \"Fiji\" ~ \"Oceania\",\n                           country == \"Kiribati\" ~ \"Oceania\",\n                           country == \"Marshall Islands\" ~ \"Oceania\",\n                           country == \"Nauru\" ~ \"Oceania\",\n                           country == \"New Zealand\" ~ \"Oceania\",\n                           country == \"Palau\" ~ \"Oceania\",\n                           country == \"Papua New Guinea\" ~ \"Oceania\",\n                           country == \"Samoa\" ~ \"Oceania\",\n                           country == \"Solomon Islands\" ~ \"Oceania\",\n                           country == \"Tonga\" ~ \"Oceania\",\n                           country == \"Tuvalu\" ~ \"Oceania\",\n                           country == \"Vanuatu\" ~ \"Oceania\",\n                            TRUE ~ \"Rest of the world\"))\n\n\nWe will be using the tidyverse package collection to analyze our data. In terms of region classification, there are 12 South American countries and 15 Oceanian countries."
+  },
+  {
+    "objectID": "slides.html#measles-and-life-expectancy",
+    "href": "slides.html#measles-and-life-expectancy",
+    "title": "World Development Indicators Analysis",
+    "section": "Measles and Life Expectancy",
+    "text": "Measles and Life Expectancy\n\nA scatterplot of measles immunization rate with respect to life expectancy"
+  },
+  {
+    "objectID": "slides.html#measles-and-life-expectancy-1",
+    "href": "slides.html#measles-and-life-expectancy-1",
+    "title": "World Development Indicators Analysis",
+    "section": "Measles and Life Expectancy",
+    "text": "Measles and Life Expectancy\nAs the life expectancy of a country increases, its measles immunization rate also increases. On average, Oceanian countries seem to have a higher measles immunization rate but lower life expectancy compared to South American countries, and neither region is drastically higher or lower in these indicators compared to the rest of the world."
+  },
+  {
+    "objectID": "slides.html#average-gdp-per-capita",
+    "href": "slides.html#average-gdp-per-capita",
+    "title": "World Development Indicators Analysis",
+    "section": "Average GDP per Capita",
+    "text": "Average GDP per Capita\n\n\nData processing code\nwdi_region_grouped &lt;- wdi_region %&gt;% \n  group_by(Region) %&gt;% \n  summarize(AvgGDP = mean(gdp_per_capita, na.rm=TRUE),\n            AvgInflation = mean(inflation_rate, na.rm=TRUE),\n            AvgLife = mean(life_expectancy, na.rm=TRUE),\n            AvgGDPGrowth = mean(gdp_growth_rate, na.rm=TRUE),\n            measles = mean(measles_immunisation_rate, na.rm=TRUE))\n\n\n\nA bar graph of average GDP per capita by region\nThe rest of the world has a significantly higher average GDP per capita compared to Oceania and South America."
+  },
+  {
+    "objectID": "slides.html#other-indicators",
+    "href": "slides.html#other-indicators",
+    "title": "World Development Indicators Analysis",
+    "section": "Other Indicators",
+    "text": "Other Indicators\n\n\n\n\n\n\n\n\n\n\n\nGDP per Capita\nGDP Growth Rate\nInflation\nLife Expectancy\n\n\n\n\nOceania\n12737.43\n2.43594\n7.543184\n70.61023\n\n\nRest of the World\n21567.47\n4.22497\n12.845402\n72.51298\n\n\nSouth America\n10258.62\n9.14499\n12.207844\n72.89433\n\n\n\n \nIn terms of other indicators, however, South America has a comparatively high GDP growth rate, while Oceania lags behind the rest of the world in GDP growth rate, inflation, and life expectancy."
+  },
+  {
+    "objectID": "slides.html#conclusions",
+    "href": "slides.html#conclusions",
+    "title": "World Development Indicators Analysis",
+    "section": "Conclusions",
+    "text": "Conclusions\n\nIn the case of Oceania, many of its indigenous populations face various health challenges, which are exacerbated by the rapidly changing sea level and weather patterns. Thus, countries are forced to undergo rapid adaptation to these new environments, where risk management places additional pressure on health and service providers in the region (Horwood et al. 2019).\nFactors such as small size, remote location, vulnerability to natural disasters, and poor natural resource endowments are also major environmental determinants for Oceania that significantly affect the region’s economic outcomes, as evidenced by its comparatively lower GDP per capita. (Kronenberg 2016).\nSimilarly, South America’s relatively low GDP per capita can also be attributed to determinants such as corruption, which inhibits the functions of economic institutions and thus inhibits investment (Márquez and Gómez 2024).\n\n       \n\nReferences\n\n\n\n\n\nHorwood, Paul F., Arnaud Tarantola, Cyrille Goarant, Mariko Matsui, Elise Klement, Masahiro Umezaki, Severine Navarro, and Andrew R. Greenhill. 2019. “Health Challenges of the Pacific Region: Insights from History, Geography, Social Determinants, Genetics, and the Microbiome.” Frontiers in Immunology 10 (September). https://doi.org/10.3389/fimmu.2019.02184.\n\n\nKronenberg, Roger P. 2016. “Chapter 1. Economic Growth in the Pacific Island Countries—Challenges, Constraints, and Policy Responses.” In Resilience and Growth in the Small States of the Pacific, ch001. USA: International Monetary Fund. https://doi.org/10.5089/9781513507521.071.ch001.\n\n\nMárquez, Héctor Flores, and Adrián Jiménez Gómez. 2024. “Determinants of Economic Growth in Latin America: Application of Bayesian Model Average (BMA).” Nova Economia 34 (3). https://doi.org/10.1590/0103-6351/8153."
+  },
+  {
+    "objectID": "report.html",
+    "href": "report.html",
+    "title": "World Development Indicators Analysis",
+    "section": "",
+    "text": "The World Development Indicators dataset from the World Bank features information such as inflation rate, GDP per capita, adult literacy rate, life expectancy, and more for each country in 2022. We will be examining indicators such as life expectancy, measles immunization rate, and GDP per capita, with respect to the regions of Oceania and South America."
+  },
+  {
+    "objectID": "report.html#intro",
+    "href": "report.html#intro",
+    "title": "World Development Indicators Analysis",
+    "section": "",
+    "text": "The World Development Indicators dataset from the World Bank features information such as inflation rate, GDP per capita, adult literacy rate, life expectancy, and more for each country in 2022. We will be examining indicators such as life expectancy, measles immunization rate, and GDP per capita, with respect to the regions of Oceania and South America."
+  },
+  {
+    "objectID": "report.html#setup",
+    "href": "report.html#setup",
+    "title": "World Development Indicators Analysis",
+    "section": "Setup",
+    "text": "Setup\n\n\nData processing code\npacman::p_load(tidyverse)\nwdi &lt;- read.csv('./data/wdi.csv')\n\nwdi_region &lt;- wdi %&gt;%\n  mutate(Region = case_when(country == \"Argentina\" ~ \"South America\",\n                           country == \"Bolivia\" ~ \"South America\",\n                           country == \"Brazil\" ~ \"South America\",\n                           country == \"Chile\" ~ \"South America\",\n                           country == \"Colombia\" ~ \"South America\",\n                           country == \"Ecuador\" ~ \"South America\",\n                           country == \"Guyana\" ~ \"South America\",\n                           country == \"Paraguay\" ~ \"South America\",\n                           country == \"Peru\" ~ \"South America\",\n                           country == \"Suriname\" ~ \"South America\",\n                           country == \"Uruguay\" ~ \"South America\",\n                           country == \"Venezuela, RB\" ~ \"South America\",\n                           country == \"Australia\" ~ \"Oceania\",\n                           country == \"Cook Islands\" ~ \"Oceania\",\n                           country == \"Micronesia, Fed. Sts.\" ~ \"Oceania\",\n                           country == \"Fiji\" ~ \"Oceania\",\n                           country == \"Kiribati\" ~ \"Oceania\",\n                           country == \"Marshall Islands\" ~ \"Oceania\",\n                           country == \"Nauru\" ~ \"Oceania\",\n                           country == \"New Zealand\" ~ \"Oceania\",\n                           country == \"Palau\" ~ \"Oceania\",\n                           country == \"Papua New Guinea\" ~ \"Oceania\",\n                           country == \"Samoa\" ~ \"Oceania\",\n                           country == \"Solomon Islands\" ~ \"Oceania\",\n                           country == \"Tonga\" ~ \"Oceania\",\n                           country == \"Tuvalu\" ~ \"Oceania\",\n                           country == \"Vanuatu\" ~ \"Oceania\",\n                            TRUE ~ \"Rest of the world\"))\n\n\nWe will be using the tidyverse package collection to analyze our data. In terms of region classification, there are 12 South American countries and 15 Oceanian countries."
+  },
+  {
+    "objectID": "report.html#measles-and-life-expectancy",
+    "href": "report.html#measles-and-life-expectancy",
+    "title": "World Development Indicators Analysis",
+    "section": "Measles and Life Expectancy",
+    "text": "Measles and Life Expectancy\n\n\nWarning: Removed 28 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\nA scatterplot of measles immunization rate with respect to life expectancy\n\n\n\n\nAs the life expectancy of a country increases, its measles immunization rate also increases. On average, Oceanian countries seem to have a higher measles immunization rate but lower life expectancy compared to South American countries, and neither region is drastically higher or lower in these indicators compared to the rest of the world."
+  },
+  {
+    "objectID": "report.html#average-gdp-per-capita",
+    "href": "report.html#average-gdp-per-capita",
+    "title": "World Development Indicators Analysis",
+    "section": "Average GDP per Capita",
+    "text": "Average GDP per Capita\n\n\nData processing code\nwdi_region_grouped &lt;- wdi_region %&gt;% \n  group_by(Region) %&gt;% \n  summarize(AvgGDP = mean(gdp_per_capita, na.rm=TRUE),\n            AvgInflation = mean(inflation_rate, na.rm=TRUE),\n            AvgLife = mean(life_expectancy, na.rm=TRUE),\n            AvgGDPGrowth = mean(gdp_growth_rate, na.rm=TRUE),\n            measles = mean(measles_immunisation_rate, na.rm=TRUE))\n\n\n\n\n\n\n\nA bar graph of average GDP per capita by region\n\n\n\n\nThe rest of the world has a significantly higher average GDP per capita compared to Oceania and South America."
+  },
+  {
+    "objectID": "report.html#other-indicators",
+    "href": "report.html#other-indicators",
+    "title": "World Development Indicators Analysis",
+    "section": "Other Indicators",
+    "text": "Other Indicators\n\n\n\n\n\n\n\n\n\n\n\nGDP per Capita\nGDP Growth Rate\nInflation\nLife Expectancy\n\n\n\n\nOceania\n12737.43\n2.43594\n7.543184\n70.61023\n\n\nRest of the World\n21567.47\n4.22497\n12.845402\n72.51298\n\n\nSouth America\n10258.62\n9.14499\n12.207844\n72.89433\n\n\n\nIn terms of other indicators, however, South America has a comparatively high GDP growth rate, while Oceania lags behind the rest of the world in GDP growth rate, inflation, and life expectancy."
+  },
+  {
+    "objectID": "report.html#conclusions",
+    "href": "report.html#conclusions",
+    "title": "World Development Indicators Analysis",
+    "section": "Conclusions",
+    "text": "Conclusions\nIn the case of Oceania, many of its indigenous populations face various health challenges, which are exacerbated by the rapidly changing sea level and weather patterns. Thus, countries are forced to undergo rapid adaptation to these new environments, where risk management places additional pressure on health and service providers in the region (Horwood et al. 2019).\nFactors such as small size, remote location, vulnerability to natural disasters, and poor natural resource endowments are also major environmental determinants for Oceania that significantly affect the region’s economic outcomes, as evidenced by its comparatively lower GDP per capita. (Kronenberg 2016). Similarly, South America’s relatively low GDP per capita can also be attributed to determinants such as corruption, which inhibits the functions of economic institutions and thus inhibits investment (Márquez and Gómez 2024)."
+  }
+]

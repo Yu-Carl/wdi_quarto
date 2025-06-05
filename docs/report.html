@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-html/tabby.min.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+
+<meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
@@ -3855,7 +3850,7 @@ vertical-align: -.125em;
 
 </head>
 
-<body class="quarto-light quarto-dark">
+<body class="quarto-light">
 
 <div id="quarto-search-results"></div>
 <!-- content -->
@@ -3864,7 +3859,7 @@ vertical-align: -.125em;
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="report.html"><i class="bi bi-file-slides"></i>RevealJS</a></li><li><a href="report.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="report.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -3908,38 +3903,38 @@ vertical-align: -.125em;
 <div class="cell">
 <details class="code-fold">
 <summary>Data processing code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse)</span>
-<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a>wdi <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'./data/wdi.csv'</span>)</span>
-<span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a>wdi_region <span class="ot">&lt;-</span> wdi <span class="sc">%&gt;%</span></span>
-<span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Region =</span> <span class="fu">case_when</span>(country <span class="sc">==</span> <span class="st">"Argentina"</span> <span class="sc">~</span> <span class="st">"South America"</span>,</span>
-<span id="cb1-6"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Bolivia"</span> <span class="sc">~</span> <span class="st">"South America"</span>,</span>
-<span id="cb1-7"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Brazil"</span> <span class="sc">~</span> <span class="st">"South America"</span>,</span>
-<span id="cb1-8"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Chile"</span> <span class="sc">~</span> <span class="st">"South America"</span>,</span>
-<span id="cb1-9"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Colombia"</span> <span class="sc">~</span> <span class="st">"South America"</span>,</span>
-<span id="cb1-10"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Ecuador"</span> <span class="sc">~</span> <span class="st">"South America"</span>,</span>
-<span id="cb1-11"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Guyana"</span> <span class="sc">~</span> <span class="st">"South America"</span>,</span>
-<span id="cb1-12"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Paraguay"</span> <span class="sc">~</span> <span class="st">"South America"</span>,</span>
-<span id="cb1-13"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Peru"</span> <span class="sc">~</span> <span class="st">"South America"</span>,</span>
-<span id="cb1-14"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Suriname"</span> <span class="sc">~</span> <span class="st">"South America"</span>,</span>
-<span id="cb1-15"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Uruguay"</span> <span class="sc">~</span> <span class="st">"South America"</span>,</span>
-<span id="cb1-16"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Venezuela, RB"</span> <span class="sc">~</span> <span class="st">"South America"</span>,</span>
-<span id="cb1-17"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Australia"</span> <span class="sc">~</span> <span class="st">"Oceania"</span>,</span>
-<span id="cb1-18"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Cook Islands"</span> <span class="sc">~</span> <span class="st">"Oceania"</span>,</span>
-<span id="cb1-19"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Micronesia, Fed. Sts."</span> <span class="sc">~</span> <span class="st">"Oceania"</span>,</span>
-<span id="cb1-20"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Fiji"</span> <span class="sc">~</span> <span class="st">"Oceania"</span>,</span>
-<span id="cb1-21"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Kiribati"</span> <span class="sc">~</span> <span class="st">"Oceania"</span>,</span>
-<span id="cb1-22"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Marshall Islands"</span> <span class="sc">~</span> <span class="st">"Oceania"</span>,</span>
-<span id="cb1-23"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Nauru"</span> <span class="sc">~</span> <span class="st">"Oceania"</span>,</span>
-<span id="cb1-24"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"New Zealand"</span> <span class="sc">~</span> <span class="st">"Oceania"</span>,</span>
-<span id="cb1-25"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Palau"</span> <span class="sc">~</span> <span class="st">"Oceania"</span>,</span>
-<span id="cb1-26"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Papua New Guinea"</span> <span class="sc">~</span> <span class="st">"Oceania"</span>,</span>
-<span id="cb1-27"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Samoa"</span> <span class="sc">~</span> <span class="st">"Oceania"</span>,</span>
-<span id="cb1-28"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Solomon Islands"</span> <span class="sc">~</span> <span class="st">"Oceania"</span>,</span>
-<span id="cb1-29"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Tonga"</span> <span class="sc">~</span> <span class="st">"Oceania"</span>,</span>
-<span id="cb1-30"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Tuvalu"</span> <span class="sc">~</span> <span class="st">"Oceania"</span>,</span>
-<span id="cb1-31"><a aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">"Vanuatu"</span> <span class="sc">~</span> <span class="st">"Oceania"</span>,</span>
-<span id="cb1-32"><a aria-hidden="true" tabindex="-1"></a>                            <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Rest of the world"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>wdi <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;./data/wdi.csv&#39;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>wdi_region <span class="ot">&lt;-</span> wdi <span class="sc">%&gt;%</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Region =</span> <span class="fu">case_when</span>(country <span class="sc">==</span> <span class="st">&quot;Argentina&quot;</span> <span class="sc">~</span> <span class="st">&quot;South America&quot;</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Bolivia&quot;</span> <span class="sc">~</span> <span class="st">&quot;South America&quot;</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Brazil&quot;</span> <span class="sc">~</span> <span class="st">&quot;South America&quot;</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Chile&quot;</span> <span class="sc">~</span> <span class="st">&quot;South America&quot;</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Colombia&quot;</span> <span class="sc">~</span> <span class="st">&quot;South America&quot;</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Ecuador&quot;</span> <span class="sc">~</span> <span class="st">&quot;South America&quot;</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Guyana&quot;</span> <span class="sc">~</span> <span class="st">&quot;South America&quot;</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Paraguay&quot;</span> <span class="sc">~</span> <span class="st">&quot;South America&quot;</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Peru&quot;</span> <span class="sc">~</span> <span class="st">&quot;South America&quot;</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Suriname&quot;</span> <span class="sc">~</span> <span class="st">&quot;South America&quot;</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Uruguay&quot;</span> <span class="sc">~</span> <span class="st">&quot;South America&quot;</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Venezuela, RB&quot;</span> <span class="sc">~</span> <span class="st">&quot;South America&quot;</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Australia&quot;</span> <span class="sc">~</span> <span class="st">&quot;Oceania&quot;</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Cook Islands&quot;</span> <span class="sc">~</span> <span class="st">&quot;Oceania&quot;</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Micronesia, Fed. Sts.&quot;</span> <span class="sc">~</span> <span class="st">&quot;Oceania&quot;</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Fiji&quot;</span> <span class="sc">~</span> <span class="st">&quot;Oceania&quot;</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Kiribati&quot;</span> <span class="sc">~</span> <span class="st">&quot;Oceania&quot;</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Marshall Islands&quot;</span> <span class="sc">~</span> <span class="st">&quot;Oceania&quot;</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Nauru&quot;</span> <span class="sc">~</span> <span class="st">&quot;Oceania&quot;</span>,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;New Zealand&quot;</span> <span class="sc">~</span> <span class="st">&quot;Oceania&quot;</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Palau&quot;</span> <span class="sc">~</span> <span class="st">&quot;Oceania&quot;</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Papua New Guinea&quot;</span> <span class="sc">~</span> <span class="st">&quot;Oceania&quot;</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Samoa&quot;</span> <span class="sc">~</span> <span class="st">&quot;Oceania&quot;</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Solomon Islands&quot;</span> <span class="sc">~</span> <span class="st">&quot;Oceania&quot;</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Tonga&quot;</span> <span class="sc">~</span> <span class="st">&quot;Oceania&quot;</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Tuvalu&quot;</span> <span class="sc">~</span> <span class="st">&quot;Oceania&quot;</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                           country <span class="sc">==</span> <span class="st">&quot;Vanuatu&quot;</span> <span class="sc">~</span> <span class="st">&quot;Oceania&quot;</span>,</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>                            <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Rest of the world&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>We will be using the tidyverse package collection to analyze our data. In terms of region classification, there are 12 South American countries and 15 Oceanian countries.</p>
@@ -3967,13 +3962,13 @@ vertical-align: -.125em;
 <div class="cell">
 <details class="code-fold">
 <summary>Data processing code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>wdi_region_grouped <span class="ot">&lt;-</span> wdi_region <span class="sc">%&gt;%</span> </span>
-<span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Region) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">AvgGDP =</span> <span class="fu">mean</span>(gdp_per_capita, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb3-4"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">AvgInflation =</span> <span class="fu">mean</span>(inflation_rate, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb3-5"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">AvgLife =</span> <span class="fu">mean</span>(life_expectancy, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb3-6"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">AvgGDPGrowth =</span> <span class="fu">mean</span>(gdp_growth_rate, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb3-7"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">measles =</span> <span class="fu">mean</span>(measles_immunisation_rate, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>wdi_region_grouped <span class="ot">&lt;-</span> wdi_region <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Region) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">AvgGDP =</span> <span class="fu">mean</span>(gdp_per_capita, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">AvgInflation =</span> <span class="fu">mean</span>(inflation_rate, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">AvgLife =</span> <span class="fu">mean</span>(life_expectancy, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">AvgGDPGrowth =</span> <span class="fu">mean</span>(gdp_growth_rate, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">measles =</span> <span class="fu">mean</span>(measles_immunisation_rate, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
@@ -4035,8 +4030,8 @@ vertical-align: -.125em;
 </section>
 <section id="conclusions" class="level2">
 <h2 class="anchored" data-anchor-id="conclusions">Conclusions</h2>
-<p>In the case of Oceania, many of its indigenous populations face various health challenges, which are exacerbated by the rapidly changing sea level and weather patterns. Thus, countries are forced to undergo rapid adaptation to these new environments, where risk management places additional pressure on health and service providers in the region <span class="citation" data-cites="Horwood2019">(<a href="" role="doc-biblioref" onclick="return false;">Horwood et al. 2019</a>)</span>.</p>
-<p>Factors such as small size, remote location, vulnerability to natural disasters, and poor natural resource endowments are also major environmental determinants for Oceania that significantly affect the region’s economic outcomes, as evidenced by its comparatively lower GDP per capita. <span class="citation" data-cites="Chapter1EconomicGrowthinthePacificIslandCountriesChallengesConstraintsandPolicyResponses">(<a href="" role="doc-biblioref" onclick="return false;">Kronenberg 2016</a>)</span>. Similarly, South America’s relatively low GDP per capita can also be attributed to determinants such as corruption, which inhibits the functions of economic institutions and thus inhibits investment <span class="citation" data-cites="Mrquez2024">(<a href="" role="doc-biblioref" onclick="return false;">Márquez and Gómez 2024</a>)</span>.</p>
+<p>In the case of Oceania, many of its indigenous populations face various health challenges, which are exacerbated by the rapidly changing sea level and weather patterns. Thus, countries are forced to undergo rapid adaptation to these new environments, where risk management places additional pressure on health and service providers in the region <span class="citation" data-cites="Horwood2019">(<a href="#ref-Horwood2019" role="doc-biblioref">Horwood et al. 2019</a>)</span>.</p>
+<p>Factors such as small size, remote location, vulnerability to natural disasters, and poor natural resource endowments are also major environmental determinants for Oceania that significantly affect the region’s economic outcomes, as evidenced by its comparatively lower GDP per capita. <span class="citation" data-cites="Chapter1EconomicGrowthinthePacificIslandCountriesChallengesConstraintsandPolicyResponses">(<a href="#ref-Chapter1EconomicGrowthinthePacificIslandCountriesChallengesConstraintsandPolicyResponses" role="doc-biblioref">Kronenberg 2016</a>)</span>. Similarly, South America’s relatively low GDP per capita can also be attributed to determinants such as corruption, which inhibits the functions of economic institutions and thus inhibits investment <span class="citation" data-cites="Mrquez2024">(<a href="#ref-Mrquez2024" role="doc-biblioref">Márquez and Gómez 2024</a>)</span>.</p>
 
 
 
